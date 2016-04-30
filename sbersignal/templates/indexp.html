@@ -1,0 +1,83 @@
+{% extends "general.html" %}
+{% load staticfiles %}
+{% block menu %}
+<li class="buttonmenu"><a href="">Домой</a>
+<li class="buttonmenu"><a href="buy">Оплата</a>
+<li class="buttonmenu"><a href="stat">Статистика</a>
+<li class="buttonmenu"><a href="contacts">Контакты</a>
+
+{% if user.is_authenticated %}
+<li class="buttonmenu"><a href = "/logout/?next=/sbersignal">Выход</a></li>
+{% else %}
+<li class="buttonmenu"><a href="registration">Регистрация</a>
+<li class="buttonmenu"><a href="login">Вход</a></li>
+{% endif %}
+            
+            
+{% endblock %}
+
+
+
+{% block content %}
+
+ <div class="sigtabletd">
+ <div class="notifdiv">
+<img style="width:50px" src="{% static "sbersignal/img/col.jpg" %}">
+<p style="margin:0px; font-size:1rem;">SBER AO СИГНАЛ</p>
+
+<p style="margin:0px; font-size:1.1rem;">
+    Подождите <b>{{ counter2 }}</b> часов <b>{{ counter }}</b> минут до открытия
+</p>
+
+
+
+<div class="ringbottomdiv">
+<p class="ringp"><a href="buy" class="ringa">Подпишитесь на сигналы</a></br></p><span class="ringspan">Подписчики имеют мгновенный доступ к сигналам</span>
+</div>
+</div>
+</div>
+                    <div class="sigtabletd">
+                        <div class="tableheader"><span>SBER AO</span></div>
+                        <div class="tabletdcontent">
+                            
+                            <p class="tablep">с: {{ rec1.date_of_rec |date:"d-m-y H:i" }}</p>
+                            <p class="tablep">по: {{ rec1.date_of_rec_ex|date:"d-m-y H:i" }}</p>
+                            <hr>
+                            {% if rec1.rec == "buy" %}
+                            <span class="buy">ПОКУПАТЬ</span>
+                            {% else %}
+                            <span class="sell">ПРОДАВАТЬ</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                     <div class="sigtabletd">
+                        <div class="tableheader"><span>SBER AO</span></div>
+                        <div class="tabletdcontent">
+                            
+                            <p class="tablep">с: {{ rec2.date_of_rec |date:"d-m-y H:i" }}</p>
+                            <p class="tablep">по: {{ rec2.date_of_rec_ex|date:"d-m-y H:i" }}</p>
+                            <hr>
+                            {% if rec2.rec == "buy" %}
+                            <span class="buy">ПОКУПАТЬ</span>
+                            {% else %}
+                            <span class="sell">ПРОДАВАТЬ</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                     <div class="sigtabletd">
+                        <div class="tableheader"><span>SBER AO</span></div>
+                        <div class="tabletdcontent">
+                            
+                            <p class="tablep">с: {{ rec3.date_of_rec |date:"d-m-y H:i" }}</p>
+                            <p class="tablep">по: {{ rec3.date_of_rec_ex|date:"d-m-y H:i" }}</p>
+                            <hr>
+                            {% if rec3.rec == "buy" %}
+                            <span class="buy">ПОКУПАТЬ</span>
+                            {% else %}
+                            <span class="sell">ПРОДАВАТЬ</span>
+                            {% endif %}
+                        </div>
+                    </div>
+{% endblock %}
+
+       

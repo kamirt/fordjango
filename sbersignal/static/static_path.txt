@@ -1,0 +1,1 @@
+Staticfiles path written to be in "virtualenv/static/sbersignal"

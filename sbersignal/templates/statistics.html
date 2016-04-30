@@ -1,0 +1,118 @@
+{% extends "general.html" %}
+{% block menu %}
+<li class="buttonmenu"><a href="../">Домой</a>
+<li class="buttonmenu"><a href="../buy">Оплата</a>
+<li class="buttonmenu"><a href="">Статистика</a>
+<li class="buttonmenu"><a href="../contacts">Контакты</a>
+
+{% if user.is_authenticated %}
+<li class="buttonmenu"><a href = "/logout/?next=/sbersignal">Выход</a></li>
+{% else %}
+<li class="buttonmenu"><a href="../registration">Регистрация</a>
+<li class="buttonmenu"><a href="login">Вход</a></li>
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagination">
+
+<ul style="padding-left:5px; margin:1px; background-color: #F5F5F5; border: 1px solid #EAE6E6; padding:2px">
+<li style="display: inline-block; margin-right:6px;"><span style="font-size:12px; color:black;">Статистика</span>
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=1"><button class="statbutton">1</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=2"><button class="statbutton">2</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=3"><button class="statbutton">3</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=4"><button class="statbutton">4</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=5"><button class="statbutton">5</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=6"><button class="statbutton">6</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=7"><button class="statbutton">7</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=8"><button class="statbutton">8</button></a>
+
+<li style="display: inline-block; margin-right:2px">
+<a href="?page=9"><button class="statbutton">9</button></a>
+
+<li style="display: inline-block;">
+<a href="?page=10"><button class="statbutton">10</button></a>
+
+</ul>
+</div>
+
+
+<table class="statistictable">
+<tr class="nametr">
+	<td class="nametd" style="width:10%; text-align:center; border-right: 1px solid white">
+		#
+	</td>
+	<td class="nametd" style="width:20%; text-align:center; border-right: 1px solid white">
+		Дата
+	</td>
+	<td class="nametd" style="width:20%; text-align:center;  border-right: 1px solid white">
+		10:00-12:50
+	</td>
+	<td class="nametd" style="width:20%; text-align:center;  border-right: 1px solid white">
+		13:54-16:50
+	</td>
+		<td class="nametd" style="width:20%; text-align:center">
+		Total
+	</td>
+</tr>
+
+{% for p in listpage %}
+<tr>
+								
+	<td style="text-align:center; border-right: 1px solid white">
+	{{ forloop.counter }} 
+	</td>
+	<td  style="text-align:center; height:28px">
+    {{ p.public_date|date:"d-m-y"  }} 
+    </td>
+    <td  style="text-align:center; height:28px">
+    <span class="first_number1">{{ p.first_number }}</span> 
+    </td>
+    <td  style="text-align:center; height:28px">
+    <span class="second_number2">{{ p.second_number }}</span> 
+    </td>
+    <td  style="text-align:center; height:28px">
+    <span style="color:black" id='{{ forloop.counter0 }}'>54</span>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+<script type="text/javascript">
+			v1 = document.getElementsByClassName("first_number1");
+			v2 = document.getElementsByClassName("second_number2");
+
+
+			for (i in v1){
+				result = Number(v1[i].innerHTML) + Number(v2[i].innerHTML);
+
+				res = document.getElementById(String(i));
+				res.innerHTML = result
+
+			};
+			
+
+
+</script>
+
+
+
+{% endblock %}

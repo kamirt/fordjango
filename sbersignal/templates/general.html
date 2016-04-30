@@ -1,0 +1,217 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>Сберсигнал - сигналы о покупке и продаже акций</title>
+    <meta name="description" content="сигналы">
+    <meta name="keywords" content="сигналы">
+
+    <link rel="stylesheet" href="{% static "sbersignal/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "sbersignal/css/fa/css/font-awesome.min.css" %}">
+   <script src="{% static "sbersignal/js/jquery.js" %}"></script>
+      <script src="{% static "sbersignal/js/phonemask.js" %}"></script>
+</head>
+<body>
+
+<div class='cont'>
+<div class="sighead">
+  <a href="/sbersignal"><img src="{% static "sbersignal/img/logosber.jpg" %}"></a>
+    <div style="width:100%; clear:both"></div>
+
+</div>
+       <ul class="sigmenupoints">
+{% block menu %}
+            
+{% endblock %}
+        </ul>
+
+
+
+
+
+<table class="maintable">
+<tr>
+<td class="maintabletd" id="rec">
+    {% block content %}
+
+
+    {% endblock %}
+</td>
+<td class="maintabletd" id="yellow">
+
+
+    {% for i in news %}
+            <div class="sigrightup-content">
+                
+                <div style="width:20%">
+                    <div class="yellowcircle">
+                    <p class="textinyellow">
+                    {{ i.public_date|date:"d" }}
+                    </br>
+                    <span class="spantextyellow">{{ i.public_date|date:"F" }}<span> 
+                    </p>
+                    </div>
+                </div>
+                <div class="yellownews">
+                <h2 class="yellowh2">{{ i.news_header }}</h2>
+                <p class="yellowp">{{ i.news_body }}</p>
+                </div>
+                </div>
+            </div>
+    {% endfor %}
+
+
+</td>
+
+
+<td class="maintabletd" style="vertical-align: top; width:226px !important;">
+
+<div style="height:100%;">
+<div class="logosub">
+<img src="{% static "sbersignal/img/logosubscr.jpg" %}">
+</div>
+<div style="padding-left:10%;">
+<p>Технические вопросы:</p>
+<p>xxx@xxx.ru</p>
+<p>Skype: xxx</p>
+</div>
+</div>
+
+</td>
+
+
+</tr>
+<tr>
+<td class="maintabletd">
+<table class="pricelist">
+<!-- Заголовок -->
+<tr style="background-color:#AFAFAF">
+<td><span class="span-black-bold" style="color:red; font-size:16px">SIGNAL PACKAGE</span></td>
+<td><span class="span-black-bold">Package Trial</span></td>
+<td><span class="span-black-bold">Standart</span></td>
+<td><span class="span-black-bold">Premium</span></td>
+</tr>
+<!-- Покупка -->
+<tr>
+<td>ПОКУПКА/ ПРОДАЖА</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Чат -->
+<tr>
+<td>ЖИВОЙ ЧАТ</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Поддержка -->
+<tr>
+<td>24/7 ПОДДЕРЖКА</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Период -->
+<tr>
+<td>ПЕРИОД ДЕЙСТВИЯ</td>
+<td>5 ДНЕЙ</i></td>
+<td>1 МЕСЯЦ</td>
+<td>3 МЕСЯЦА</td>
+</tr>
+<!-- Цена -->
+<tr>
+<td>СТОИМОСТЬ</td>
+<td>700р</td>
+<td>2100р</i></td>
+<td>5800р</td>
+</tr>
+<tr>
+<td style="padding-top:23px">&nbsp;</td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+</tr>
+
+</table>
+
+
+
+
+</td>
+<td class="maintabletd">
+
+
+
+
+<table style="padding:10px; width:100%; border-collapse:collapse">
+          {% for h in pastres %}
+            <tr class="dayresults-tr">
+                <td class="dayresults-td">
+                <p class="dayresults-p">{{ h.public_date|date:"d-m-y" }} 
+                </td>
+                <td class="strips">
+                <div class="stripblue"></div>
+                <div class="stripgreen"></div>
+                </td>
+                <td>
+               <p> {{ h.first_number }} </br>{{ h.second_number }}</p>
+                </td>
+            </tr>
+            {% endfor %}
+            
+
+
+              
+</table>
+
+
+
+
+
+</td>
+<td class="maintabletd">
+    <form method="post">
+    {% csrf_token %}
+        <div id="subscrform">
+        {{ subform.subname }}
+        {{ subform.subemail }}
+        {{ subform.subphone }}
+        {{ subform.subskype }}
+        {{ subform.subhid }}
+</br>&nbsp;
+<input type="submit" class="buttonsubscr" value="Подписаться">
+        </div>
+    </form>
+
+</td>
+</tr>
+</table>
+
+
+
+
+    <div class="sigpayment">
+<h3>Инструкции</h3>
+<p>
+    Система имеет в день два сигнала с прогнозом на рост или понижение. Первый сигнал поступает в 10-00 по (мск), второй сигнал в 13.55 (мск) или 15-00 (мск). Для каждого сигнала предусмотрен стоп-лосс 150 пунктов от цены покупки. Первый сигнал с 10-00 по 12-20 и 12-50. Система закрывает сделку в 12-20 или в 12-50, в зависимости от того, когда наступает положительный результат.
+</p>
+    </div>
+       <div class="sigpayment">
+<h3>Отказ от ответственности</h3>
+<p>
+    Торговля на Фондовом рынке и другими финансовыми продуктами с кредитным плечом является высоко рискованной и может привести к существенным потерям. Проведение торговых операций на рынке может не подходить каждому. Вам необходимо быть осведомленным обо всех рисках, и обратиться за помощью к независимым финансовым консультантам, в случае возникновения вопросов или сомнений. </br>
+    Владельцы веб-сайта настоящим отказываются от какой-либо ответственности, связанной с использованием веб-сайта и/или информации. Использование веб-сайта, его содержимого и информации относится к единоличной ответственности пользователя. Пользователь настоящим освобождает владельцев сайта от любой ответственности за ущерб, причиненный его компьютеру, при использовании веб-сайта и/или его содержимого и/или его различных услуг. Пользователь настоящим освобождает владельцев веб-сайта, веб-сайт, его партнеров, агентов, сотрудников, служащих, менеджеров, директоров, акционеров и пр. от любой ответственности за убытки и/или финансовый ущерб и/или личные телесные повреждения и/или мошенничество, связанные с использованием веб-сайта.
+    </br>
+    </br>
+    Все права защищены. Использование этого сайта означает принятие этого пользовательского соглашения.
+</p>
+    </div>
+
+</div>
+<script>
+
+   $("#phone").mask("+7 (999) 999-9999",{placeholder:" "});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "general.html" %}
+{% block menu %}
+<li class="buttonmenu"><a href="">Домой</a>
+<li class="buttonmenu"><a href="buy">Оплата</a>
+<li class="buttonmenu"><a href="stat">Статистика</a>
+<li class="buttonmenu"><a href="contacts">Контакты</a>
+
+{% if user.is_authenticated %}
+<li class="buttonmenu"><a href = "/logout/?next=/sbersignal">Выход</a></li>
+{% else %}
+<li class="buttonmenu"><a href="../registration">Регистрация</a>
+<li class="buttonmenu"><a href="login">Вход</a></li>
+{% endif %}
+            
+{% endblock %}
+
+
+
+{% block content %}
+
+
+                {% for g in rec %}
+                   <div class="sigtabletd">
+                        <div class="tableheader"><span>SBER AO</span></div>
+                        <div class="tabletdcontent">
+                            
+                            <p class="tablep">с: {{ g.date_of_rec |date:"d-m-y H:i" }}</p>
+                            <p class="tablep">по: {{ g.date_of_rec_ex|date:"d-m-y H:i" }}</p>
+                            <hr>
+                            {% if g.rec == "buy" %}
+                            <span class="buy">ПОКУПАТЬ</span>
+                            {% else %}
+                            <span class="sell">ПРОДАВАТЬ</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if forloop.counter == 4 %} {% endif %}
+              {% endfor %}
+
+
+             
+
+{% endblock %}
+
+       

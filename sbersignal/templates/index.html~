@@ -1,0 +1,67 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Сберсигнал - сигналы о покупке и продаже акций</title>
+    <meta name="description" content="сигналы">
+    <meta name="keywords" content="сигналы">
+
+    <link rel="stylesheet" href="{% static "sbersignal/css/style.css" %}">>
+</head>
+<header>
+    <div class="sighead">
+<h1 class="sigheadtitle"><a href="#">Шапка</a></h1>
+        <div class="siglogin">
+            <p class="sigemail">support@sbersignal.com</p>
+            <p><a href="#">Регистрация\Вход</a></p>
+        </div>
+    </div>
+    <div class="sigheadmenu">
+        <ul class="sigmenupoints">
+            <li><a href="#">Package</a></li>
+            <li><a href="#">Статистика</a></li>
+            <li><a href="#">Условия предоставления услуг</a></li>
+            <li><a href="#">Методы оплаты</a></li>
+            <li><a href="#">Живая поддержка</a></li>
+        </ul>
+    </div>
+</header>
+        <div class="sigleftup">
+            <table class="sigtable">
+                <tr>
+                    <td colspan="1" rowspan="1">
+                        example
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        example
+                    </td>
+                </tr>
+                <tr colspan="1" rowspan="1">
+                    <td>
+                        example
+                    </td>
+                    <td colspan="1" rowspan="1">
+                        example
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="sigrightup">
+            &nbsp;
+        </div>
+        <div class="sigrightdown">
+            &nbsp;
+        </div>
+        <div class="sigleftdown">
+            Дневные результаты
+        </div>
+<footer>
+    <div class="sigpayment">
+        <img src="{% static "sbersignal/img/payments.png" %}">
+    </div>
+</footer>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+from sbersignal import send_email
+from django.template.loader import get_template
+from django.template import Context, Template
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render
+
+
+import os
+from celery import Celery
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'generator.settings')
+
+from django.conf import settings
+
+app = Celery('sbersignal')
+
+app.config_from_object('django.conf:settings')
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+if __name__ == '__main__':
+	celery.start()
+from django.core.mail import send_mail
+
+
+@app.task
+def first_mail_task(email, subject, context):
+#this sends email for list of recievers. Using for the first mail after subscribing and for respond
+	d = {'text': context}
+	plain_text = get_template('email/regletter.txt')
+	html_msg = get_template('email/regletter.html')
+	text_content = plain_text.render(d)
+	html_content = html_msg.render(d)
+	msg = EmailMultiAlternatives(subject, text_content, 'kamirt@yandex.ru', email)
+	msg.attach_alternative(html_content, "text/html")
+	msg.send()

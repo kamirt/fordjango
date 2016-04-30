@@ -1,0 +1,62 @@
+{% extends "general.html" %}
+{% block menu %}
+<li class="buttonmenu"><a href="../">Домой</a>
+<li class="buttonmenu"><a href="../buy">Оплата</a>
+<li class="buttonmenu"><a href="../stat">Статистика</a>
+<li class="buttonmenu"><a href="../contacts">Контакты</a>
+
+{% if user.is_authenticated %}
+<li class="buttonmenu"><a href = "/logout/?next=/sbersignal">Выход</a></li>
+{% else %}
+<li class="buttonmenu"><a href="../registration">Регистрация</a>
+<li class="buttonmenu"><a href="login">Вход</a></li>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="sigleftup">
+{% if user.is_authenticated %}
+<div style = "margin-left:20%;padding-top: 10px">
+    <p style = "margin:0;">Добро пожаловать, <b>{{ user.username }}</b>.</p>
+    <p style = "margin-top:5px; right:5%; left:30%"><a href = "/logout/?next=/sbersignal">Выход</a></p>
+</div>
+{% else %}
+{% if form.errors %}
+<p>Неверный логин и пароль. Попробуйте еще раз.</p>
+{% endif %}
+<div style="text-align:center;padding-right:30%">
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+{% csrf_token %}
+
+
+<table style="margin-left:20%;">
+<tr>
+    <td><label for="id_username">Имя пользователя:</label></td>
+    <td><input class="input_text" id="id_username" maxlength="254" name="username" type="text" /></td>
+</tr>
+<tr>
+    <td>
+    	<label for="id_password">Пароль:</label>
+    </td>
+    <td>
+    	<input class="input_text" id="id_password" name="password" type="password" />
+    	
+    </td>
+
+</tr>
+<tr>
+<td>
+</td>
+<td>
+<input class="button-contacts" type="submit" value="Вход"/>
+</td>
+</tr>
+</table>
+
+<input type="hidden" name="next" value="../sbersignal" />
+</form>
+</div>
+
+{% endif %}
+
+</div>
+{% endblock %}

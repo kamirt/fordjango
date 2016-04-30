@@ -1,0 +1,44 @@
+<form class="sendmessage" action="" method="post">
+{% csrf_token %}
+
+	<table class="message-table">
+
+<tr>
+
+	<td class="greyinput">
+{{ form.name }}
+	</td>
+	
+</tr>
+<tr>
+
+	<td class="greyinput">
+{{ form.email }}
+	</td>
+</tr>
+<tr>
+	<td class="greyinput">
+{{ form.image1 }}
+	</td>
+	</tr>
+	<tr>
+	<td class="greyinput">
+{{ form.image2 }}
+	</td>
+	</tr>
+	<tr>
+	<td class="greyinput">
+{{ form.image3 }}
+	</td>
+	</tr>
+		<tr>
+	<td class="greyinput">
+{{ form.text }}
+	</td>
+	</tr>
+	<td>
+	<input class="button-contacts" name="submit" type="submit" value="Отправить" />
+	</td>
+</tr>
+	</table>
+</form>

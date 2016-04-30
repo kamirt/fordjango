@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Сберсигнал - сигналы о покупке и продаже акций</title>
+    <meta name="description" content="сигналы">
+    <meta name="keywords" content="сигналы">
+
+    <link rel="stylesheet" href="{% static "sbersignal/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "sbersignal/css/fa/css/font-awesome.min.css" %}">
+</head>
+<header>
+
+<div class="sighead">
+  <a href="/sbersignal"><img src="{% static "sbersignal/img/logosber.jpg" %}"></a>
+    <div style="width:100%; clear:both"></div>
+
+</div>
+       <ul class="sigmenupoints">
+{% block menu %}
+<li class="buttonmenu"><a href="../">Домой</a>
+<li class="buttonmenu"><a href="">Оплата</a>
+<li class="buttonmenu"><a href="../stat">Статистика</a>
+<li class="buttonmenu"><a href="../contacts">Контакты</a>
+
+{% if user.is_authenticated %}
+<li class="buttonmenu"><a href = "/logout/?next=/sbersignal">Выход</a></li>
+{% else %}
+<li class="buttonmenu"><a href="../registration">Регистрация</a>
+<li class="buttonmenu"><a href="login">Вход</a></li>
+{% endif %}
+{% endblock %}
+        </ul>
+
+
+
+</header>
+
+        <div class="buy">
+<table class="pricelist">
+<!-- Заголовок -->
+<tr style="background-color:#AFAFAF">
+<td><span class="span-black-bold" style="color:red; font-size:16px">SIGNAL PACKAGE</span></td>
+<td><span class="span-black-bold">Package Trial</span></td>
+<td><span class="span-black-bold">Standart</span></td>
+<td><span class="span-black-bold">Premium</span></td>
+</tr>
+<!-- Покупка -->
+<tr>
+<td style="color:red;">ПОКУПКА/ ПРОДАЖА</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Чат -->
+<tr>
+<td>ЖИВОЙ ЧАТ</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Поддержка -->
+<tr>
+<td>24/7 ПОДДЕРЖКА</td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+<td><img src="{% static "sbersignal/img/galochka.png" %}" class="galochka"></td>
+</tr>
+<!-- Период -->
+<tr>
+<td>ПЕРИОД ДЕЙСТВИЯ</td>
+<td>5 ДНЕЙ</i></td>
+<td>1 МЕСЯЦ</td>
+<td>3 МЕСЯЦА</td>
+</tr>
+<!-- Цена -->
+<tr>
+<td>СТОИМОСТЬ</td>
+<td>700р</td>
+<td>2100р</i></td>
+<td>5800р</td>
+</tr>
+<tr>
+<td style="padding-top:35px">&nbsp;</td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+<td><a href="#" class="buy-button"/>Купить</a></td>
+</tr>
+
+</table>
+
+
+        </div>
+
+
+
+
+
+<footer>
+
+</footer>
+<body>
+
+</body>
+</html>
